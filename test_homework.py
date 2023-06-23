@@ -8,15 +8,9 @@ import pandas as pd
 
 
 def test_python():
-    urllib.request.urlretrieve('https://raw.githubusercontent.com/AC4RM/AC4RM-dataset/main/homework/example.txt',
-                               'example.txt')
 
-    text_generator = search('lorem', 'example.txt')
-
-    assert isinstance(text_generator, Generator)
-    assert len(list(text_generator)) == 2
-
-    Path('data.db').unlink(missing_ok=True)
+    assert check_user('admin') == 'Admin account detected'
+    assert check_user('random') == 'Invalid'
 
 
 def test_sql():
