@@ -10,9 +10,9 @@
     - `num1` and `num2` can take any numeric number
     - `ops` can take one of `add`, `sub`, `mul` or `div`
     - return the result or print `'Invalid Operation'` if you encounter division by zero error.
-2. Write SQL queries to do the following:
-    - In the `customers` table, give any customers born before 1990 50 extra points.
-    - In `orders` table, update comments to `'Gold Customer'` for customers with more than 3000 points.
+2. Find the customers who located in Virginia and who have total sales more than $100. 
+   - Total sales is defined as `quantity * unit_price` in the `order_items` table. 
+   - Include the `customer_id`, `first_name`, `last_name` and `total_sales` columns in the result
 3. Using the iris datasets from the sklearn package, try to group the observations into clusters using all the features.
    - The four columns in the iris dataset are `sepal length`, `sepal width`, `petal length`, `petal width`.
    - Using `dendrogram` to figure out the best number of clusters.
