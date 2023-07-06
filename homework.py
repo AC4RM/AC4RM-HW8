@@ -2,7 +2,7 @@ from sklearn import datasets
 import numpy as np
 
 
-def check_user(user):
+def calculator(num1, num2, ops):
     # Your code here
     pass
 
@@ -31,15 +31,3 @@ def extract_number(input_string):
     # Your code here
     pass
 
-
-def play_round():
-    # Roll a 100 sided die.
-    # Use the roll_dice function defined above.
-    # Return True if win and False if lose.
-    # Your code here
-    pass
-
-
-def general_bettor_quick(initial_funds, initial_wager, intended_rounds, scaler=1, increment=0):
-    # Your code here
-    pass

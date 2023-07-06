@@ -1,57 +1,40 @@
-from homework import *
+from solution import *
 from pathlib import Path
-from typing import Generator
-import sklearn_extra
 import urllib.request
 import sqlite3
 import pandas as pd
+import sklearn
+import re
 
 
 def test_python():
 
-    assert check_user('admin') == 'Admin account detected'
-    assert check_user('random') == 'Invalid'
+    assert calculator(20, 2, 'mul') == 40
+    assert calculator(5, 0, 'div') == 'Invalid Operation'
 
 
 def test_sql():
     urllib.request.urlretrieve('https://github.com/AC4RM/AC4RM-dataset/blob/main/sql/data.db?raw=true', 'data.db')
 
     con = sqlite3.connect('data.db')
-    con.execute(sql_query_1)
-    con.execute(sql_query_2)
-    con.commit()
 
-    customer_df = pd.read_sql_query('SELECT * FROM customers', con)
-    order_df = pd.read_sql_query('SELECT * FROM orders', con)
+    customer_df = pd.read_sql_query(sql_query, con)
 
-    assert max(customer_df.query('birth_date <= "1990-01-01"')['points']) == 3725
-    assert min(customer_df.query('birth_date <= "1990-01-01"')['points']) == 507
-    assert order_df.query('comments == "Gold Customer"').shape[0] == 4
+    assert customer_df.shape == (1, 4)
+    assert round(customer_df['total_sales'][0], 2) == 157.92
+    assert customer_df['last_name'][0] == 'Brushfield'
 
     Path('data.db').unlink(missing_ok=True)
 
 
 def test_model():
-    model = train_model()
+    model, predictions = train_model()
 
-    assert isinstance(model, sklearn_extra.cluster._k_medoids.KMedoids)
-    assert np.array_equal(model.cluster_centers_, np.array([[6.5, 3., 5.2, 2.], [5.7, 2.8, 4.1, 1.3], [5., 3.4, 1.5, 0.2]]))
+    assert isinstance(model, sklearn.tree._classes.DecisionTreeClassifier)
+    assert sum(predictions) == 75
 
 
 def test_regex():
-    number_1 = extract_number('Today is July 4h')
-    number_2 = extract_number('Yesterday was July 3rd')
-
-    assert number_1 == '4'
-    assert number_2 == '3'
-
-
-def test_monte_carlo():
-    results = []
-    np.random.seed(42)
-    for i in range(50):
-        result = general_bettor_quick(10000, 100, 20)
-        results.append(result)
-
-    assert len(list(filter(lambda x: x < 10000, results))) == 22
-    assert max(results) == 11000
+    assert re.search(regex_pattern, 'abc123@gmail.com') is not None
+    assert re.search(regex_pattern, 'abc123@gmail.net') is not None
+    assert re.search(regex_pattern, 'abc123@gmail.xyz') is None
