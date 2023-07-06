@@ -1,4 +1,4 @@
-from solution import *
+from homework import *
 from pathlib import Path
 import urllib.request
 import sqlite3
