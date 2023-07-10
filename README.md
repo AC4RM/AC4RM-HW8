@@ -13,10 +13,10 @@
 2. Find the customers who located in Virginia and who have total sales more than $100. 
    - Total sales is defined as `quantity * unit_price` in the `order_items` table. 
    - Include the `customer_id`, `first_name`, `last_name` and `total_sales` columns in the result
-3. Using the iris datasets from the sklearn package, try to group the observations into clusters using all the features.
-   - The four columns in the iris dataset are `sepal length`, `sepal width`, `petal length`, `petal width`.
-   - Using `dendrogram` to figure out the best number of clusters.
-   - Return the Hierarchical Cluster model re-fitted with the optimal number of clusters.
+3. We will be using the same Titanic dataset, but we will train a Decision Tree model this time
+   - Follow the same preprocessing steps as HW3
+   - Split the data into training and testing set (80/20) and use a random seed of 42
+   - Return the decision tree model fitted on the training set and the predictions made on the test set.
 4. Write a regex pattern that will only match email address ends with `.com` or `.net`
    - `re.search(regex_pattern, 'abc123@gmail.com')` => Match
    - `re.search(regex_pattern, 'abc123@gmail.net')` => Match
